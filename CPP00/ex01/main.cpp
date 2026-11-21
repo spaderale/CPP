@@ -1,36 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abroslav <abroslav@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/21 18:32:47 by abroslav          #+#    #+#             */
+/*   Updated: 2026/11/21 23:45:37 by abroslav         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 
-
-int main(void)
+void	printMenu()
 {
-    PhoneBook phone_book;
-    std::string option;
+	std::cout << "\n===========================================\n";
+	std::cout << "|           MY   PHONE   BOOK             |\n";
+	std::cout << "===========================================\n";
+	std::cout << "|     ADD     |    SEARCH    |    EXIT    |\n";
+	std::cout << "===========================================\n";
+	std::cout << "\n> ";
+}
 
-    std::cout << GREEN << "\nWelcome to PhoneBook\n" << RESET;
-    while(1)
-    {
-        std::cout << "\nPlease! Choose one option.\n";
-        std::cout << "Options: ADD, SEARCH or EXIT.\n";
-        if(!std::getline(std::cin, option))
-            break ;
-        if(option == "ADD")
-        {
-            if(!phone_book.addContact())
-            {
-                std::cout << RED << "\nError to add contact\n" << RESET;
-                break ;
-            }
-        }
-        else if (option == "SEARCH")
-        {
-            if(!phone_book.searchContact())
-            {
-                std::cout << RED << "\nError to search contacts\n" << RESET;
-                break ;
-            }
-        }
-        else if(option == "EXIT")
-            break ;
-    }
-    return (0);
+int	main(void)
+{
+	PhoneBook	phoneBook;
+	std::string	input;
+
+	while (1)
+	{
+		printMenu();
+		if (!std::getline(std::cin, input))
+			break ;
+		if (input == "ADD")
+		{
+			std::cout << "\n";
+			if (!phoneBook.addContact())
+			{
+				std::cout << "\nContact not saved!\n";
+				continue ;
+			}
+		}
+		else if (input == "SEARCH")
+		{
+			std::cout << "\n";
+			if (!phoneBook.searchContact())
+			{
+				std::cout << "\nError to search contact\n";
+				break ;
+			}
+		}
+		else if (input == "EXIT")
+		{
+			std::cout << "\n";
+			break ;
+		}
+	}
+	return (0);
 }
