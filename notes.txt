@@ -1,0 +1,50 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    notes.txt                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: abroslav <abroslav@student.42lisboa.com>   +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/11/25 13:25:53 by abroslav          #+#    #+#              #
+#    Updated: 2026/11/25 15:36:21 by abroslav         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+>namespaces: permite agrupar símbolos e funções contendo uma relação semântica no mesmo conjunto.
+Serve como um alias onde podemos guardar funções e variaveis com o mesmo nome e acessamos 
+através do namespaces.
+
+---
+int		global_variable = 1;
+int		f(void) { return 2; }
+
+namespace	Foo{
+
+	int		global_variable = 3;
+	int		f(void) { return 4; }
+}
+
+namespace	Bar{
+
+	int		global_variable = 5;
+	int		f(void) { return 6; }
+}
+
+namespace	Muf = Bar;
+
+					e na main podemos invocar:
+
+printf("global_variable: [%d]", global_variabel); -> [1]
+
+print("Foo::global_variable [%d]", Foo:global_variable); -> [3]
+print("Foo::f() 			[%d]", Foo:f()); -> [4]
+
+print("Bar::global_variable [%d]", Bar::global_variable); -> [5]
+print("Bar::f() 			[%d]", Bar::f()); -> [6]
+
+print("Muf::global_variable [%d]", Muf::global_variable); -> [5]
+print("Muf::f()             [%d]", Muf::f()); -> [6]
+---
+
+
+
