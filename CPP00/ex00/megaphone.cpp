@@ -1,31 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abroslav <abroslav@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/20 19:36:44 by abroslav          #+#    #+#             */
+/*   Updated: 2026/11/25 17:27:27 by abroslav         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 
-int		main(int argc, char **argv)
+int	main(int ac, char **av)
 {
-	int		i, j;
-	char	c;
+	std::string	str;
 
-	i = 1;
-	if (argc == 1)
-		std::cout << "* LOAD AND UNBEARABLE FEEDNACK NOISE *" << "\n";
-	else if (argc > 1)
+	if (ac == 1)
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+	else if (ac > 1)
 	{
-		while (i < argc)
+		for (int i = 1; i < ac; i++)
 		{
-			j = 0;
-			while (argv[i][j])
-			{
-				c = argv[i][j];
-				if (c >= 'a' && c <= 'z')
-					c -= 32;
-				std::cout << c;
-				j++;
-			}
-			if (i + 1 < argc)
-				std::cout << " ";
-			i++;
+			str = std::string(av[i]);
+			for (size_t y = 0; y < str.length(); y++)
+				std::cout << (char)std::toupper(str.at(y));
 		}
-		std::cout << "\n";
 	}
-	return (0);
+	
+	std::cout << std::endl;
+	return(0);
 }
